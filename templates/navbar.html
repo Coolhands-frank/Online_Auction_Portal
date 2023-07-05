@@ -1,0 +1,32 @@
+<!-- Navbar-->
+<nav class="navbar navbar-expand-sm pt-3 bg-light">
+
+    <!-- container wrapper-->
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('home') }}">Auctions</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="nav navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('create_listing') }}">Add Goods</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('my_bid') }}">My Bid</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('profile') }}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+
+</nav>
+

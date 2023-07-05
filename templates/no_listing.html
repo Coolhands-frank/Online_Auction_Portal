@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% include 'navbar.html' %}
+
+{% block title %}My bidding{% endblock %}
+
+{% block content %}
+    <h1 style="display: flex; justify-content: center; margin-top: 20%; color: gainsboro">
+        No product enlisted yet. You can list a product <a href="{{ url_for('create_listing') }}">&nbsp;here</a>.
+    </h1>
+{% endblock %}

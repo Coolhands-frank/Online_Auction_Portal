@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+{% include 'navbar.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+    <section class="vh-100" style="background-color: #eee;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-black" style="border-radius: 25px; padding: 40px;">
+                        <form method="POST">
+                            <h3 class="text-center">Add product</h3>
+                            
+                            <div class="form-group">
+                                <label for="image">Image URL</label>
+                                <input type="text" class="form-control" id="image" name="image" placeholder="Add image URL" REQUIRED/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name of Product" REQUIRED/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <input type="description" class="form-control" id="description" name="description" placeholder="Description"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="artCategory">Category</label>
+                                <input type="description" class="form-control" id="description" name="category" placeholder="Landscape e.g."/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <input type="description" class="form-control" id="description" name="price" placeholder="0.0"/>
+                            </div>
+
+                            <div class="from group row">
+                                <label for="start-date" class="col-sm col-form-label">Start date</label>
+                                
+                                <div class="col-5">
+                                    <input type="date" class="form-control" id="date" name="start_date"/>
+                                </div>
+
+                                <label for="ending-date" class="col-sm col-form-label">Ending date</label>
+                                
+                                <div class="col-4">
+                                    <input type="date" class="form-control" id="date" name="end_date"/>
+                                </div>
+                                
+                            </div>
+                            
+                            <br />
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </section>
+
+{% endblock %}

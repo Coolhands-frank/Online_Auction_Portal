@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% include "navbar.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <div class="container-xxl">
+
+    <div class="container searchdiv">
+      <form class="searchform" method="POST">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input class ="searchinput" type="text" name="searchbar" placeholder="search items..." id="searchbarid">
+          <button type="submit" class="searchbtn">Search</button>
+        </input>
+      </form>
+    </div>
+
+    <div style="margin-top: 20px;"><div class="tenor-gif-embed" data-postid="24712117" data-share-method="host" data-aspect-ratio="3.07692" data-width="70px"><a href="https://tenor.com/view/live-gif-24712117">Live Sticker</a>from <a href="https://tenor.com/search/live-stickers">Live Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script></div>
+    
+      <div class="row">
+          {% for product in products %}
+            <div class="card " style="width: 18rem; padding: 20px; margin-top: 20px; margin-bottom: 20px; margin-right:10px; margin-left: 20px;">
+              <img src="{{ product.image }}" class="card-img-top" alt="..." height="200rem">
+              
+              <div class="card-body text-decor">
+
+                <div style="margin-bottom: 20px;">
+                  <h4 class="card-title">{{ product.name }}</h4>
+                  <p class="card-text">{{ product.description }}</p>
+                </div>
+
+                <p class="card-text">Price: N {{ product.price }}</p>
+                <p class="card-text">Last bidder: {{ product.bid_by }}</p>
+                <p class="card-text">Auction about to end in {{ product.time_left }} hours.</p>
+                <a href="product/{{ product.id }}" class="btn btn-primary">Bid</a>
+              </div>
+
+            </div>
+          {% endfor %}
+      </div>
+
+  </div>
+{% endblock %}

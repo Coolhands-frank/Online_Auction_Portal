@@ -1,0 +1,117 @@
+{% extends 'layout.html' %}
+{% include 'navbar.html' %}
+
+{% block title %}{{user.name}} || Profile{% endblock %}
+
+{% block content %}
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiMHJP62BFwjTtS8b11V3bO0rb9xi2_h-sdw&usqp=CAU" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                            <h5 class="my-3">{{user.name}}</h5>
+                            <p class="text-muted mb-4">{{user.email}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+
+                        <form action="{{ url_for('update') }}" method="post">
+                            <div class="card-body">
+                    
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Full Name</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="name" id="form3Example4cd" placeholder="{{ user.name }}" class="form-control" />
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Email</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">{{ user.email }}</p>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Phone</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="number" name="phone" placeholder="{{ user.phone }}" id="form3Example4cd" class="form-control" />
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Address</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="address" name="address" id="form3Example4cd" placeholder="{{ user.address }}" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end update_btn_placement">
+                                    <button type="submit" class="btn btn-primary mr-4 btn">Update</button>
+                                </div>
+
+                            </div>         
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="card mb-4 mb-lg-12 col-lg-12">
+                    {% with products=products %}
+                        <div class="container-sm">
+                            <table class="table" style="margin-top: 20px;">
+
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col"> Name</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Ending date</th>
+                                        <th scope="col">Winner</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for product in products %}
+                                        <tr>
+                                            <th scope="row">{{ product.__index__ }}</th>
+                                            <td><a href="{{ url_for('product', id=product.id) }}">{{ product.name }}</a></td>
+                                            <td>{{ product.description }}</td>
+                                            <td>{{ product.price }}</td>
+                                            <td>{{ product.end_date }}</td>
+                                            {% if product.winner == None %}
+                                                <td>Not announced yet</td>
+                                            {% else %}
+                                                <td>{{ product.bid_by }}</td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                        </div>
+                    {% endwith %}   
+                </div> 
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

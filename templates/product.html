@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+{% include 'navbar.html' %}
+
+{% block title %}Bid{% endblock %}
+
+{% block content %}
+  <section class="" style="background-color: #eee;">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black card-margin" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">We Offer you Quality Sales </p>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0 text-decor">
+                      <h3>{{product.name}}</h3>
+                      <p>{{product.description}}</p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0 text-decor">      
+                      <p>Price: N {{product.price}} </p>
+                      <p>Started: {{product.start_date}}</p>
+                      <p>Auction ends at: {{ product.end_date }}</p>
+                    </div>
+                  </div>
+                  
+                  {% if owner %}
+                    <form method="post" action="/product/delete/{{product.id}}">
+                      <button type="submit" class="btn btn-danger btn-lg">Delete</button>
+                    </form>
+                  {% endif %}
+                      
+                  {% if not owner %} 
+                    {% if auction_ended %}
+                      {% if product.winner == None %}
+                        <h3>Auction Ended</h3>
+                      {% else %}
+                        <form method="POST" action="/order/{{ product.id }}">
+                          <button type="submit" class="btn btn-primary btn-lg">CheckOut</button>
+                        </form>
+                      {% endif %}
+                    {% endif %}
+
+                    {% if not auction_ended %}
+                      <form class="" method="POST">
+                        <div class="d-flex flex-row align-items-center mb-4">
+                          
+                          <div class="form-outline flex-fill mb-0">
+                            <input type="number" name="bid" id="form3Example3c" class="form-control" required />
+                            <label class="form-label" for="form3Example3c">0.0$ </label>
+                            {% with messages = get_flashed_messages() %}
+                              {% if messages %}
+                                <ul class=flashes >
+                                  {% for message in messages %}
+                                    <li class="alert alert-danger" role="alert">{{ message }}</li>
+                                  {% endfor %}
+                                </ul>
+                              {% endif %}
+                            {% endwith %}
+                          </div>
+
+                        </div>
+
+                        <div class="">
+                          <button type="submit" class="btn btn-primary btn-lg">Bid</button>
+                        </div>
+
+                      </form>
+                    {% endif %}
+                  {% endif %}
+                </div>
+
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex  order-1 order-lg-2">
+                  <img src="{{ product.image }}" class="img-fluid" alt="Sample image">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
